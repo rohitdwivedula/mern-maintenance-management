@@ -9,7 +9,11 @@ class TilesView extends Component{
     anomalies: []
   }
   componentDidMount(){
-    this.setState(this.props.location.state)
+  	this.getData();
+  	setInterval(this.getData, 5000);
+  }
+  getData = () => {
+  	this.setState(this.props.location.state);
     API.get('/api/classes').then((response) => {
       this.setState({error:false, anomalies:response.data, loadStatus:true})
       console.log(response.data);
